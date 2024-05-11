@@ -1,0 +1,30 @@
+name: publish Expander Template Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+env:
+  PACKAGE_FOLDER: D:\a\LiquidVisions.PanthaRhei.Templates\LiquidVisions.PanthaRhei.Templates\src\package\
+
+jobs:
+  push-nuget-packages:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.x
+    
+    - name: Dotnet Pack
+      run: |  
+        cd Expander/
+        dotnet pack -c Release -o ${{env.PACKAGE_FOLDER}}
+        
+    - name: Publish
+      run: dotnet nuget push ${{env.PACKAGE_FOLDER}}*.nupkg --skip-duplicate --no-symbols --source https://nuget.pkg.github.com/liquidvisions/index.json --api-key ${{secrets.GITHUB_TOKEN}}
