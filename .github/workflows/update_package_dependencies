@@ -1,0 +1,10 @@
+name: Update Package Dependencies
+
+on:
+  registry_package:
+    action:
+        - updated
+    package_name:
+        
+
+jobs:
