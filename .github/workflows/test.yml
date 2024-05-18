@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v2
     
       - name: Print GitHub Repository
-        run: echo "Repository: ${{ github.repository }}"
+        run: echo ${{ github.repository }}
