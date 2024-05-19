@@ -1,0 +1,13 @@
+name: Debug GitHub Context
+
+on: [push]
+
+jobs:
+  print-github-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    
+      - name: Print GitHub Repository
+        run: echo ${{ github.repository }}
