@@ -33,9 +33,6 @@ namespace __PREFIX__.__SOURCE__
         }
         
         /// <inheritdoc/>
-        public override string Name => "__SOURCE__";
-
-        /// <inheritdoc/>
         public override void Expand()
         {
             base.Expand();
