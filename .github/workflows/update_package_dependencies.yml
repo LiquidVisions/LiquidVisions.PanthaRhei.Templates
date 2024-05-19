@@ -1,6 +1,7 @@
 name: Update NuGet Package References
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [nuget-package-update]
 
@@ -21,6 +22,7 @@ jobs:
         run: |
           find . -name "*.csproj" | while read csproj; do
             dotnet list "$csproj" package --outdated --include-prerelease | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
+              dotnet restore
               dotnet add "$csproj" package $package --version $version
             done
           done
