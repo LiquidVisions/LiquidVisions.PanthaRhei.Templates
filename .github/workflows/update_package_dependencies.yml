@@ -27,7 +27,7 @@ jobs:
           find . -name "*.csproj" | while read csproj; do
             dotnet restore "$csproj"
             dotnet list "$csproj" package --outdated --include-prerelease | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
-              dotnet add "$csproj" package $package --version $version
+              dotnet add "$csproj" package $package
             done
           done
 
