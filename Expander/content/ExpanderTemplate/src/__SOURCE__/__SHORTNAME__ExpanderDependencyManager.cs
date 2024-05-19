@@ -1,5 +1,6 @@
 ﻿using LiquidVisions.PanthaRhei.Domain.Entities;
 using LiquidVisions.PanthaRhei.Domain.Usecases.Dependencies;
+using LiquidVisions.PanthaRhei.Domain.Usecases.Generators;
 using LiquidVisions.PanthaRhei.Domain.Usecases.Generators.Expanders;
 using System.Diagnostics.CodeAnalysis;
 
@@ -23,6 +24,8 @@ namespace __PREFIX__.__SOURCE__
 
         public override void Register()
         {
+            DependencyManager.AddTransient(typeof(IExpanderTask<__SHORTNAME__Expander>), typeof(CreateDotNetProjectExpanderTask<__SHORTNAME__Expander>))
+
             base.Register();
         }
     }
