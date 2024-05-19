@@ -18,6 +18,10 @@ jobs:
         with:
           dotnet-version: '8.x'  # Change to your required .NET version
 
+      - name: Add Package Token
+        run: |
+          dotnet nuget add source --username USERNAME --password ${{ secrets.PACKAGE_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/LiquidVisions/index.json"
+        
       - name: Update NuGet packages
         run: |
           find . -name "*.csproj" | while read csproj; do
