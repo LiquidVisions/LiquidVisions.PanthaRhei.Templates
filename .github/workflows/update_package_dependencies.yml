@@ -27,7 +27,9 @@ jobs:
           find . -name "*.csproj" | while read csproj; do
             echo "Handling project file: $csproj"
             dotnet restore "$csproj"
-            dotnet list "$csproj" package --outdated | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
+            outdated_packages=$(dotnet list "$csproj" package --outdated)
+            echo "$outdated_packages"
+            echo "$outdated_packages" | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
               echo "Updating package: $package to version: $version in project file: $csproj"
               dotnet add "$csproj" package $package
             done
