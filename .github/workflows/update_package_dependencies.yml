@@ -29,7 +29,7 @@ jobs:
             dotnet restore "$csproj"
             outdated_packages=$(dotnet list "$csproj" package --outdated)
             echo "$outdated_packages"
-            echo "$outdated_packages" | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
+            echo "$outdated_packages" | tail -n +4 | awk '{print $1 " " $4}' | while read package version; do
               echo "Updating package: $package to version: $version in project file: $csproj"
               dotnet add "$csproj" package $package
             done
