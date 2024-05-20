@@ -25,8 +25,10 @@ jobs:
       - name: Update NuGet packages
         run: |
           find . -name "*.csproj" | while read csproj; do
+            echo "Handling project file: $csproj"
             dotnet restore "$csproj"
-            dotnet list "$csproj" package --outdated --include-prerelease | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
+            dotnet list "$csproj" package --outdated | tail -n +3 | awk '{print $1 " " $4}' | while read package version; do
+              echo "Updating package: $package to version: $version in project file: $csproj"
               dotnet add "$csproj" package $package
             done
           done
@@ -35,30 +37,11 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git checkout -b update-nuget-packages
           git add .
           git commit -m "Update NuGet packages to latest versions"
-
-      - name: Push changes to feature branch
+          
+      - name: Push changes to master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push -u origin update-nuget-packages
-
-      - name: Create Pull Request
-        id: create_pr
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: update-nuget-packages
-          title: 'Update NuGet packages to latest versions'
-          body: 'This PR updates all NuGet packages to their latest versions.'
-
-      - name: Merge Pull Request
-        if: success()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pr_number=$(jq -r '.pull_request.number' <<<"${{ steps.create_pr.outputs.pull_request }}")
-          gh pr merge $pr_number --merge --admin
-
+          git push origin HEAD:master
