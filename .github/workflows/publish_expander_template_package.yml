@@ -3,7 +3,7 @@ name: publish Expander Template Package
 on:
   workflow_dispatch:
   push:
-    branches: [ off ]
+    branches: [ master ]
 
 env:
   PACKAGE_FOLDER: D:\a\LiquidVisions.PanthaRhei.Templates\LiquidVisions.PanthaRhei.Templates\src\package\
