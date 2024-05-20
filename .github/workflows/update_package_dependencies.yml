@@ -38,7 +38,7 @@ jobs:
       - name: Bump version
         uses: SiqiLu/dotnet-bump-version@master
         with:
-          version_file: "**/LiquidVisions.PanthaRhei.Templates.Expander.csproj"
+          version_files: "**/*.csproj"
           version_mask: "0.0.1.0"
           version_overwrite: "*.*.1.*"
           
