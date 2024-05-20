@@ -41,7 +41,6 @@ jobs:
           version_file: "Expander/LiquidVisions.PanthaRhei.Templates.Expander.csproj"
           version_mask: "0.0.1.0"
           version_overwrite: "*.*.*.*"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit changes
         run: |
