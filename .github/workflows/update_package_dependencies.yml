@@ -41,13 +41,6 @@ jobs:
           version_files: "**/LiquidVisions.PanthaRhei.Templates.Expander.csproj"
           version_mask: "0.0.1.0"
           version_overwrite: "*.*.1.*"
-
-      - name: Commit changes
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add .
-          git commit -m "Update NuGet packages to latest versions"
           
       - name: Push changes to master
         env:
