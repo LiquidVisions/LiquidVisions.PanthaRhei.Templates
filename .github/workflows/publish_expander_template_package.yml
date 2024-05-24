@@ -26,7 +26,7 @@ jobs:
       with:
         version_files: "**/Expander/LiquidVisions.PanthaRhei.Templates.Expander.csproj"
         version_mask: "0.0.1.0"
-        version_overwrite: "*.*.1.*" 
+        version_overwrite: "*.*.*.*" 
     
     - name: Dotnet Pack
       run: |  
