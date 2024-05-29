@@ -22,9 +22,10 @@ namespace __PREFIX__.__SOURCE__
         {
         }
 
+        /// <inheritdoc/>
         public override void Register()
         {
-            DependencyManager.AddTransient(typeof(IExpanderTask<__SHORTNAME__Expander>), typeof(CreateDotNetProjectExpanderTask<__SHORTNAME__Expander>))
+            DependencyManager.AddTransient(typeof(IExpanderTask<__SHORTNAME__Expander>), typeof(CreateDotNetProjectExpanderTask<__SHORTNAME__Expander>));
 
             base.Register();
         }
