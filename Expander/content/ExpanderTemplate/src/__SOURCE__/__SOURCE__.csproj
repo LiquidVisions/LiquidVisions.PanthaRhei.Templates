@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LiquidVisions.PanthaRhei.Core" Version="0.4.4">
+		<PackageReference Include="LiquidVisions.PanthaRhei.Core" Version="0.4.6">
 			<GeneratePathProperty>True</GeneratePathProperty>
 		</PackageReference>
 	</ItemGroup>
