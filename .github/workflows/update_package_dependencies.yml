@@ -3,7 +3,7 @@ name: Update NuGet Package References
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [nuget-package-update]
+    types: update
 
 jobs:
   update-nuget-packages:
