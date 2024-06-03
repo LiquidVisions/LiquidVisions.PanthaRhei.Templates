@@ -3,7 +3,7 @@ name: Update NuGet Package References
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [nuget-package-update]
+    types: update
 
 jobs:
   update-nuget-packages:
@@ -35,8 +35,12 @@ jobs:
             done
           done
           
-      - name: Push changes to master
+      - name: Commit and Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.name "gkoks"
+          git config --global user.email "gerco.koks@outlook.com"
+          git add .
+          git commit -m "Update NuGet packages"
           git push origin HEAD:master
