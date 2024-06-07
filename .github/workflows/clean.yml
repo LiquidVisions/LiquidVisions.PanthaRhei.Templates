@@ -3,13 +3,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  del_runs:
+  delete-workflow-runs:
     runs-on: ubuntu-latest
+    name: A demo job to delete workflow runs
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Delete workflow runs
-        uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
+        uses: ./ # Uses an action in the root directory
+        id: delete-old-workflow-runs
         with:
-          repository: LiquidVisions/LiquidVisions.PanthaRhei.Templates   # replace this with your own repository
-          older-than-seconds: 86400                           # remove all workflow runs older than 1 day
+          repository: MajorScruffy/delete-old-workflow-runs
+          workflow: ".github/workflows/clean.yml"
+          # older-than-seconds: 3600
+          # created-before: "2021-12-08T16:34:00Z"
+          # actor: test@test.com
+          # branch: main
+          # event: push
+          # event: completed
+          # what-if: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
